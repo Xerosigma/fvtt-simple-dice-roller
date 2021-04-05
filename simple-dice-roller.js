@@ -69,14 +69,7 @@ class SimpleDiceRoller {
     static _createDiceTableHtml(maxDiceCount) {
         
         let s = [];
-        
-        s.push(this._createDiceTableHtmlOneLine(4, maxDiceCount));
-        s.push(this._createDiceTableHtmlOneLine(6, maxDiceCount));
-        s.push(this._createDiceTableHtmlOneLine(8, maxDiceCount));
         s.push(this._createDiceTableHtmlOneLine(10, maxDiceCount));
-        s.push(this._createDiceTableHtmlOneLine(12, maxDiceCount));
-        s.push(this._createDiceTableHtmlOneLine(20, maxDiceCount));
-        s.push(this._createDiceTableHtmlOneLine(100, maxDiceCount));
         
         return s.join('');
     }
@@ -108,8 +101,8 @@ class SimpleDiceRoller {
 
         var diceType = event.target.dataset.diceType;
         var diceRoll = event.target.dataset.diceRoll;
-                
-        var formula = diceRoll + "d" + diceType;
+
+        var formula = diceRoll + "d" + diceType + "cs>=7";
 
         let r = new Roll(formula);
 
