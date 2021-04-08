@@ -183,7 +183,7 @@ Hooks.once("init", () => {
 		hint: game.i18n.localize("simpleDiceRoller.diceFormula.hint"),
 		scope: "world",
 		config: true,
-		default: DiceTypes([4,6,8,10,12,20,100]),
+		default: new DiceTypes([4,6,8,10,12,20,100]),
 		type: DiceTypes
 	});
 });
