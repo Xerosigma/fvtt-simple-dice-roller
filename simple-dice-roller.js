@@ -94,15 +94,16 @@ class SimpleDiceRoller {
 
         html.find('.simple-dice-roller-popup').append(tableContents);
 
-        html.find('.simple-dice-roller-popup li').click(ev => this._rollDice(ev, html));
+        let diceFormula = game.settings.get("simple-dice-roller", "diceFormula");
+        html.find('.simple-dice-roller-popup li').click(ev => this._rollDice(ev, html, diceFormula));
     }
 
-    static async _rollDice(event, html) {
+    static async _rollDice(event, html, diceFormula) {
 
         var diceType = event.target.dataset.diceType;
         var diceRoll = event.target.dataset.diceRoll;
 
-        var formula = diceRoll + "d" + diceType + "cs>=7";
+        var formula = diceRoll + "d" + diceType + diceFormula;
 
         let r = new Roll(formula);
 
@@ -155,6 +156,15 @@ Hooks.once("init", () => {
 		config: true,
 		default: 8,
 		type: Number
+	});
+
+	game.settings.register("simple-dice-roller", "diceFormula", {
+		name: game.i18n.localize("simpleDiceRoller.diceFormula.name"),
+		hint: game.i18n.localize("simpleDiceRoller.diceFormula.hint"),
+		scope: "world",
+		config: true,
+		default: "",
+		type: String
 	});
 });
 

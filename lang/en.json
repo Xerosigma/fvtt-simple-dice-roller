@@ -2,5 +2,8 @@
 	"I18N.MAINTAINERS": ["jopeek"],
 
 	"simpleDiceRoller.maxDiceCount.name": "Maximum Dices in a Roll",
-	"simpleDiceRoller.maxDiceCount.hint": "The highest number of dices you can throw through the Simple Dice Roller."
+	"simpleDiceRoller.maxDiceCount.hint": "The highest number of dices you can throw through the Simple Dice Roller.",
+
+	"simpleDiceRoller.diceFormula.name": "Dice Formula",
+	"simpleDiceRoller.diceFormula.hint": "Ex: cs>=8"
 }
