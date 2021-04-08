@@ -69,8 +69,12 @@ class SimpleDiceRoller {
     static _createDiceTableHtml(maxDiceCount) {
         
         let s = [];
-        s.push(this._createDiceTableHtmlOneLine(10, maxDiceCount));
-        
+
+        let diceTypes = game.settings.get("simple-dice-roller", "diceTypes");
+        for(let i = 1; i <= diceTypes.types; ++i) {
+            s.push(this._createDiceTableHtmlOneLine(i, maxDiceCount));
+        }
+
         return s.join('');
     }
     
@@ -146,6 +150,13 @@ class SimpleDiceRoller {
 
 }
 
+class DiceTypes extends FormApplication {
+    constructor(types) {
+        this.name = 'DiceTypes';
+        this.types = types;
+    }
+}
+
 Hooks.on('renderSceneControls', (controls, html) => { SimpleDiceRoller.Init(controls, html); });
 
 Hooks.once("init", () => {
@@ -165,6 +176,15 @@ Hooks.once("init", () => {
 		config: true,
 		default: "",
 		type: String
+	});
+
+	game.settings.register("simple-dice-roller", "diceTypes", {
+		name: game.i18n.localize("simpleDiceRoller.diceFormula.name"),
+		hint: game.i18n.localize("simpleDiceRoller.diceFormula.hint"),
+		scope: "world",
+		config: true,
+		default: DiceTypes([4,6,8,10,12,20,100]),
+		type: DiceTypes
 	});
 });
 
